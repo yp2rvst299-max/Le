@@ -1,0 +1,1319 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>🇹🇼 BẮC CHI GAME - 766 TỪ PHỒN THỂ</title>
+
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  min-height:100vh;
+  background:linear-gradient(135deg,#ffe4f1,#dff5ff,#fff3c4);
+  color:#333;
+  overflow-x:hidden;
+}
+body:before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  opacity:.18;
+  background-image:
+    radial-gradient(circle at 10% 20%,#ff69b4 0 4px,transparent 5px),
+    radial-gradient(circle at 80% 30%,#4db8ff 0 5px,transparent 6px),
+    radial-gradient(circle at 30% 80%,#ffd43b 0 4px,transparent 5px),
+    radial-gradient(circle at 90% 85%,#8ce99a 0 5px,transparent 6px);
+}
+
+.container{
+  width:min(680px,94%);
+  margin:0 auto;
+  padding:18px 0 40px;
+}
+
+header{
+  text-align:center;
+  padding:18px 10px 10px;
+}
+
+.logo{
+  font-size:42px;
+  animation:bounce 1.8s infinite;
+}
+
+h1{
+  margin:5px 0;
+  font-size:28px;
+  color:#6f42c1;
+  text-shadow:2px 2px 0 white;
+}
+
+.subtitle{
+  color:#555;
+  font-size:14px;
+}
+
+@keyframes bounce{
+  0%,100%{transform:translateY(0) rotate(-3deg)}
+  50%{transform:translateY(-8px) rotate(3deg)}
+}
+
+.card{
+  background:rgba(255,255,255,.92);
+  border:3px solid white;
+  border-radius:28px;
+  padding:20px;
+  box-shadow:0 12px 35px rgba(80,60,120,.15);
+  margin-top:15px;
+}
+
+.topbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:8px;
+  flex-wrap:wrap;
+}
+
+.badge{
+  background:#f3d9ff;
+  color:#7b2cbf;
+  padding:8px 13px;
+  border-radius:20px;
+  font-weight:700;
+  font-size:13px;
+}
+
+button{
+  border:0;
+  border-radius:16px;
+  padding:12px 16px;
+  font-size:15px;
+  font-weight:700;
+  cursor:pointer;
+  transition:.15s;
+}
+
+button:active{
+  transform:scale(.94);
+}
+
+.sound{
+  background:#fff0a8;
+}
+
+.select-box{
+  width:100%;
+  margin-top:15px;
+  padding:13px;
+  border-radius:15px;
+  border:2px solid #ddd;
+  font-size:16px;
+  background:white;
+}
+
+.progress{
+  height:12px;
+  background:#eee;
+  border-radius:20px;
+  overflow:hidden;
+  margin:18px 0;
+}
+
+.progress-bar{
+  height:100%;
+  width:0%;
+  background:linear-gradient(90deg,#ff6b9a,#845ef7,#339af0);
+  transition:.3s;
+}
+
+.question-number{
+  text-align:center;
+  color:#777;
+  font-weight:700;
+}
+
+.word{
+  text-align:center;
+  margin:18px 0;
+}
+
+.chinese{
+  font-size:54px;
+  font-weight:900;
+  color:#5f3dc4;
+  line-height:1.2;
+}
+
+.pinyin{
+  font-size:21px;
+  color:#e8590c;
+  margin-top:8px;
+  font-weight:700;
+}
+
+.meaning{
+  font-size:17px;
+  color:#555;
+  margin-top:5px;
+}
+
+.answers{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+  margin-top:20px;
+}
+
+.answer{
+  min-height:65px;
+  background:#f8f9fa;
+  border:3px solid #e9ecef;
+  color:#333;
+}
+
+.answer:hover{
+  background:#e7f5ff;
+  border-color:#74c0fc;
+}
+
+.answer.correct{
+  background:#d3f9d8;
+  border-color:#40c057;
+  color:#176b2c;
+}
+
+.answer.wrong{
+  background:#ffe3e3;
+  border-color:#fa5252;
+  color:#a61e1e;
+}
+
+.feedback{
+  min-height:32px;
+  text-align:center;
+  margin-top:15px;
+  font-size:18px;
+  font-weight:800;
+}
+
+.score{
+  text-align:center;
+  font-size:18px;
+  font-weight:800;
+  margin-top:8px;
+}
+
+.start{
+  display:block;
+  margin:15px auto 0;
+  background:linear-gradient(135deg,#845ef7,#e64980);
+  color:white;
+  font-size:18px;
+  padding:15px 30px;
+}
+
+.hidden{
+  display:none!important;
+}
+
+.result{
+  text-align:center;
+}
+
+.result .emoji{
+  font-size:75px;
+}
+
+.result h2{
+  color:#7b2cbf;
+  font-size:30px;
+}
+
+.result-score{
+  font-size:25px;
+  font-weight:900;
+  color:#e64980;
+}
+
+.small{
+  font-size:13px;
+  color:#777;
+  text-align:center;
+  margin-top:15px;
+}
+
+@media(max-width:480px){
+  .chinese{font-size:46px}
+  .answers{grid-template-columns:1fr}
+  h1{font-size:24px}
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<header>
+  <div class="logo">🇹🇼🎮✨</div>
+  <h1>BẮC CHI GAME</h1>
+  <div class="subtitle">766 TỪ VỰNG TIẾNG TRUNG PHỒN THỂ</div>
+</header>
+
+<div class="card">
+
+  <div class="topbar">
+    <div class="badge">📚 Học từ vựng</div>
+    <button class="sound" id="soundBtn" onclick="toggleSound()">🔊 Âm thanh</button>
+  </div>
+
+  <select id="lesson" class="select-box">
+    <option value="all">🎲 Tất cả từ vựng</option>
+    <option value="1">📖 Bài 1</option>
+    <option value="2">📖 Bài 2</option>
+    <option value="3">📖 Bài 3</option>
+    <option value="4">📖 Bài 4</option>
+    <option value="5">📖 Bài 5</option>
+    <option value="6">📖 Bài 6</option>
+    <option value="7">📖 Bài 7</option>
+    <option value="8">📖 Bài 8</option>
+    <option value="9">📖 Bài 9</option>
+    <option value="10">📖 Bài 10</option>
+    <option value="11">📖 Bài 11</option>
+    <option value="12">📖 Bài 12</option>
+    <option value="13">📖 Bài 13</option>
+    <option value="14">📖 Bài 14</option>
+    <option value="15">📖 Bài 15</option>
+  </select>
+
+  <button class="start" id="startBtn" onclick="startGame()">
+    🚀 BẮT ĐẦU CHƠI
+  </button>
+
+  <div id="game" class="hidden">
+
+    <div class="progress">
+      <div id="progressBar" class="progress-bar"></div>
+    </div>
+
+    <div id="questionNumber" class="question-number"></div>
+
+    <div class="word">
+      <div id="chinese" class="chinese"></div>
+      <div id="pinyin" class="pinyin"></div>
+      <div id="meaning" class="meaning"></div>
+    </div>
+
+    <div id="answers" class="answers"></div>
+
+    <div id="feedback" class="feedback"></div>
+
+    <div id="score" class="score">
+      ⭐ Điểm: 0
+    </div>
+
+  </div>
+
+  <div id="result" class="result hidden">
+    <div class="emoji">🎉🏆🎊</div>
+    <h2>HOÀN THÀNH!</h2>
+    <div class="result-score" id="finalScore"></div>
+    <p id="finalMessage"></p>
+
+    <button class="start" onclick="startGame()">
+      🔄 CHƠI LẠI
+    </button>
+  </div>
+
+  <div class="small">
+    💡 Đúng → âm thanh vui + tự sang câu tiếp theo<br>
+    😅 Sai → âm thanh hơi buồn + vẫn ở câu hiện tại
+  </div>
+
+</div>
+
+</div>
+
+<script>
+
+/* =========================================================
+   DỮ LIỆU TỪ VỰNG
+   Dạng:
+   [Chữ Phồn thể, Pinyin, Nghĩa tiếng Việt, Bài]
+   ========================================================= */
+
+const VOCAB = [
+
+["你","nǐ","bạn",1],
+["來","lái","đến / đi / tới hướng về người nói",1],
+["是","shì","là",1],
+["小姐","xiǎojiě","tiểu thư / cô / chị",1],
+["嗎","ma","à / ư / có phải không",1],
+["接","jiē","đón / tiếp đón",1],
+["我們","wǒmen","chúng tôi / chúng ta",1],
+["我","wǒ","tôi",1],
+["這","zhè","đây / này",1],
+["先生","xiānshēng","tiên sinh / ngài",1],
+["好","hǎo","tốt / được / ngon / khỏe / giỏi",1],
+["性","xìng","họ",1],
+["叫","jiào","gọi là / tên là",1],
+["你們","nǐmen","các bạn",1],
+["臺灣","Táiwān","Đài Loan",1],
+["歡迎","huānyíng","hoan nghênh / chào mừng",1],
+["請問","qǐngwèn","xin hỏi",1],
+["是的","shìde","vâng / đúng",1],
+["謝謝","xièxie","cảm ơn",1],
+["不客氣","búkèqì","không có gì",1],
+["你好","nǐ hǎo","xin chào",1],
+["請","qǐng","mời / nhờ / xin",1],
+["喝","hē","uống",1],
+["茶","chá","trà",1],
+["很","hěn","rất",1],
+["好喝","hǎohē","uống ngon",1],
+["什麼","shénme","cái gì / nào",1],
+["人","rén","người",1],
+["喜歡","xǐhuān","thích",1],
+["呢","ne","nhé / vậy / sao / đâu",1],
+["他","tā","anh ấy / ông ấy",1],
+["她","tā","cô ấy / chị ấy",1],
+["不","bù","không",1],
+["哪","nǎ","nào / đâu",1],
+["要","yào","muốn / phải / cần",1],
+["咖啡","kāfēi","cà phê",1],
+["烏龍茶","Wūlóng chá","trà ô long",1],
+["日本","Rìběn","Nhật Bản",1],
+["美國","Měiguó","Mỹ",1],
+["中國","Zhōngguó","Trung Quốc",1],
+["對不起","duìbùqǐ","xin lỗi",1],
+["哪國","nǎguó","nước nào",1],
+["中文","Zhōngwén","tiếng Trung",1],
+["的","de","của / mà",1],
+["家人","jiārén","người nhà / gia đình",1],
+["家","jiā","nhà",1],
+["漂亮","piàoliàng","xinh đẹp",1],
+["房子","fángzi","căn nhà",1],
+["坐","zuò","ngồi",1],
+["有","yǒu","có",1],
+["多","duō","nhiều",1],
+["照片","zhàopiàn","ảnh chụp",1],
+["都","dōu","đều",1],
+["照相","zhàoxiàng","chụp ảnh",1],
+["張","zhāng","lượng từ tấm / bức / tờ",1],
+["好看","hǎokàn","đẹp / ưa nhìn",1],
+["誰","shéi","ai",1],
+["姐姐","jiějie","chị gái",1],
+["妹妹","mèimei","em gái",1],
+["爸爸","bàba","bố",1],
+["媽媽","māma","mẹ",1],
+["哥哥","gēge","anh trai",1],
+["弟弟","dìdi","em trai",1],
+["姐妹","jiěmèi","chị em gái",1],
+["兄弟","xiōngdi","anh em",1],
+["請進","qǐng jìn","mời vào",1],
+["伯母","bómǔ","bác gái / cô / dì",1],
+["您","nín","ngài",1],
+["名字","míngzi","tên",1],
+["書","shū","sách",1],
+["筆","bǐ","bút",1],
+["老師","lǎoshī","giáo viên",1],
+["看書","kànshū","đọc sách",1],
+["幾","jǐ","mấy",1],
+["個","ge","lượng từ chung",1],
+["沒","méi","không / chưa",1],
+["兩","liǎng","hai",1],
+["週末","zhōumò","cuối tuần",1],
+["聽","tīng","nghe",1],
+["音樂","yīnyuè","âm nhạc",1],
+["運動","yùndòng","thể dục / thể thao",1],
+["打","dǎ","đánh",1],
+["網球","wǎngqiú","tennis",1],
+["棒球","bàngqiú","bóng chày",1],
+["籃球","lánqiú","bóng rổ",1],
+["足球","zúqiú","bóng đá",1],
+["踢","tī","đá",1],
+["游泳","yóuyǒng","bơi",1],
+["爬山","páshān","leo núi",1],
+["操場","cāochǎng","sân tập",1],
+["放鬆","fàngsōng","thư giãn",1],
+["和","hé","và",1],
+["常","cháng","thường",1],
+["也","yě","cũng",1],
+["覺得","juéde","cảm thấy",1],
+["好玩","hǎowán","vui / thú vị",1],
+["今天","jīntiān","hôm nay",1],
+["明天","míngtiān","ngày mai",1],
+["昨天","zuótiān","hôm qua",1],
+["早上","zǎoshàng","buổi sáng",1],
+["上午","shàngwǔ","buổi sáng / gần trưa",1],
+["中午","zhōngwǔ","buổi trưa",1],
+["下午","xiàwǔ","buổi chiều",1],
+["晚上","wǎnshàng","buổi tối",1],
+["夜晚","yèwǎn","đêm",1],
+["零點","língdiǎn","0 giờ / 12 giờ đêm",1],
+["去","qù","đi",1],
+["怎麼樣","zěnmeyàng","như thế nào",1],
+["啊","a","a / à / á",1],
+["做什麼","zuò shénme","làm gì",1],
+["好啊","hǎo a","được đó",1],
+["看","kàn","nhìn / xem / thấy",1],
+["電影","diànyǐng","phim điện ảnh",1],
+["電影院","diànyǐngyuàn","rạp chiếu phim",1],
+["妳","nǐ","bạn / chị / em",1],
+["想","xiǎng","muốn / nhớ / nghĩ",1],
+["還是","háishì","hay / hay là",1],
+["吧","ba","đi / nhé",1],
+["可以","kěyǐ","có thể / được phép",1],
+["能","néng","có thể do năng lực",1],
+["知道","zhīdào","biết thông tin",1],
+["一起","yìqǐ","cùng nhau",1],
+["吃","chī","ăn",1],
+["晚飯","wǎnfàn","bữa tối",1],
+["午飯","wǔfàn","bữa trưa",1],
+["早飯","zǎofàn","bữa sáng",1],
+["菜","cài","món ăn / rau",1],
+["越南","Yuènán","Việt Nam",1],
+["好不好","hǎo bù hǎo","được không",1],
+["出去玩","chūqùwán","ra ngoài chơi",1],
+["一共","yígòng","tổng cộng",1],
+["多少","duōshǎo","bao nhiêu",1],
+["錢","qián","tiền",1],
+["老闆","lǎobǎn","ông chủ / chủ quán",1],
+["買","mǎi","mua",1],
+["賣","mài","bán",1],
+["杯","bēi","cốc / chén",1],
+["碗","wǎn","bát",1],
+["瓶","píng","chai / lọ",1],
+["包子","bāozi","bánh bao",1],
+["包麵","bāomiàn","mì gói",1],
+["大","dà","to",1],
+["小","xiǎo","nhỏ",1],
+["中","zhōng","vừa / trung",1],
+["幫","bāng","giúp đỡ",1],
+["幫忙","bāngmáng","sự giúp đỡ",1],
+["微波","wéibō","hâm bằng lò vi sóng",1],
+["百","bǎi","trăm",1],
+["千","qiān","nghìn",1],
+["萬","wàn","vạn",1],
+["塊","kuài","tệ / đồng",1],
+["好的","hǎode","được ạ / vâng ạ",1],
+["外帶","wàidài","mang về / mang đi",1],
+["內用","nèiyòng","dùng tại chỗ",1],
+["熱","rè","nóng",1],
+["冷","lěng","lạnh",1],
+["冰","bīng","lạnh",1],
+["果汁","guǒzhī","nước ép",1],
+["種","zhǒng","loại / trồng",1],
+["上網","shàngwǎng","lên mạng",1],
+["網上","wǎngshàng","trên mạng",1],
+["網路","wǎnglù","mạng / lên mạng",1],
+["那","nà","vậy / thì / kia",1],
+["這","zhè","đây / này",1],
+["貴","guì","đắt",1],
+["便宜","piányí","rẻ",1],
+["為什麼","wèishénme","tại sao",1],
+["支","zhī","lượng từ của bút / điện thoại",1],
+["新","xīn","mới",1],
+["舊","jiù","cũ",1],
+["太","tài","quá",1],
+["了","le","trợ từ cuối câu",1],
+["手機","shǒujī","điện thoại",1],
+["電話","diànhuà","điện thoại",1],
+["電話號","diànhuàhào","số điện thoại",1],
+["打電話","dǎdiànhuà","gọi điện thoại",1],
+["打視頻","dǎshìpín","gọi video",1],
+["歲","suì","tuổi",1],
+["生日","shēngrì","sinh nhật",1],
+["送","sòng","tặng",1],
+["給","gěi","cho",1],
+["蛋糕","dàngāo","bánh kem",1],
+["禮物","lǐwù","món quà",1],
+["珍珠奶茶","zhēnzhū nǎichá","trà sữa trân châu",1],
+["紅茶","hóngchá","hồng trà",1],
+["綠茶","lǜchá","trà xanh",1],
+["飲料","yǐnliào","đồ uống",1],
+["春天","chūntiān","mùa xuân",1],
+["夏天","xiàtiān","mùa hạ",1],
+["秋天","qiūtiān","mùa thu",1],
+["冬天","dōngtiān","mùa đông",1],
+["花","huā","hoa",1],
+["朵","duǒ","lượng từ đoá / bông",1],
+["牛","niú","bò",1],
+["狗","gǒu","chó",1],
+["貓","māo","mèo",1],
+["羊","yáng","dê",1],
+["馬","mǎ","ngựa",1],
+["豬","zhū","lợn",1],
+["雞","jī","gà",1],
+["鳥","niǎo","chim",1],
+["麵","miàn","mì",1],
+["真","zhēn","thật",1],
+["好吃","hǎochī","ăn ngon",1],
+["說","shuō","nói",1],
+["聽說","tīngshuō","nghe nói",1],
+["少","shǎo","ít",1],
+["有名","yǒumíng","nổi tiếng",1],
+["小吃","xiǎochī","đồ ăn vặt",1],
+["零食","língshí","đồ ăn vặt",1],
+["甜點","tiándiǎn","điểm tâm ngọt",1],
+["湯","tāng","canh / súp",1],
+["最","zuì","nhất",1],
+["這麼","zhème","như thế này",1],
+["那麼","nàme","như thế kia",1],
+["店","diàn","tiệm / quán",1],
+["館","guǎn","quán / tiệm",1],
+["鹹","xián","mặn",1],
+["甜","tián","ngọt",1],
+["酸","suān","chua",1],
+["辣","là","cay",1],
+["苦","kǔ","đắng",1],
+["鹽","yán","muối",1],
+["糖","táng","đường",1],
+["棟","dòng","lượng từ tòa nhà",1],
+["家","jiā","lượng từ nhà / hàng / quán",1],
+["點","diǎn","gọi món / giờ",1],
+["一定","yídìng","nhất định",1],
+["是啊","shì a","đúng vậy",1],
+["小籠包","xiǎolóngbāo","tiểu long bao",1],
+["臭豆腐","chòu dòufu","đậu phụ thối",1],
+["太好了","tài hǎo le","quá tốt rồi",1],
+["餐廳","cāntīng","nhà ăn / nhà hàng",1],
+["飯館","fànguǎn","quán cơm / nhà hàng",1],
+["可是","kěshì","nhưng",1],
+["但是","dànshì","nhưng",1],
+["不過","búguò","nhưng / tuy nhiên",1],
+["怕","pà","sợ",1],
+["可怕","kěpà","đáng sợ",1],
+["所以","suǒyǐ","vậy nên",1],
+["自己","zìjǐ","bản thân / tự mình",1],
+["做飯","zuòfàn","nấu cơm",1],
+["得","de","trợ từ trạng thái",1],
+["會","huì","biết / sẽ / có thể",1],
+["不錯","búcuò","không tệ",1],
+["教","jiào","dạy",1],
+["到","dào","đến",1],
+["有一點","yǒuyìdiǎn","có một chút",1],
+["不好","bùhǎo","không tốt",1],
+["下雨","xiàyǔ","mưa",1],
+["下雪","xiàxuě","tuyết",1],
+["從","cóng","từ",1],
+["學校","xuéxiào","trường học",1],
+["學","xué","học",1],
+["在","zài","đang / ở",1],
+["山上","shānshàng","trên núi",1],
+["哪裡","nǎlǐ","ở đâu / chỗ nào",1],
+["遠","yuǎn","xa",1],
+["近","jìn","gần",1],
+["離","lí","cách",1],
+["那裡","nàlǐ","chỗ kia",1],
+["這裡","zhèlǐ","chỗ này",1],
+["風景","fēngjǐng","phong cảnh",1],
+["美","měi","đẹp",1],
+["前面","qiánmiàn","đằng trước",1],
+["後面","hòumiàn","đằng sau",1],
+["中間","zhōngjiān","ở giữa",1],
+["海","hǎi","biển",1],
+["海邊","hǎibiān","bờ biển",1],
+["地方","dìfāng","nơi / địa phương",1],
+["真的","zhēnde","thực sự",1],
+["現在","xiànzài","bây giờ",1],
+["附近","fùjìn","gần đây / xung quanh",1],
+["樓下","lóuxià","tầng dưới",1],
+["樓上","lóushàng","tầng trên",1],
+["樓","lóu","tầng",1],
+["找","zhǎo","tìm",1],
+["朋友","péngyǒu","bạn bè",1],
+["方便","fāngbiàn","tiện / thuận tiện",1],
+["便利","biànlì","thuận tiện",1],
+["學生","xuéshēng","học sinh",1],
+["同學","tóngxué","bạn cùng lớp",1],
+["東西","dōngxī","đồ vật / món",1],
+["外面","wàimiàn","bên ngoài",1],
+["裡面","lǐmiàn","bên trong",1],
+["商店","shāngdiàn","cửa hàng",1],
+["宿舍","sùshè","ký túc xá",1],
+["大樓","dàlóu","tòa nhà",1],
+["圖書館","túshūguǎn","thư viện",1],
+["教室","jiàoshì","lớp học / phòng học",1],
+["游泳池","yóuyǒngchí","bể bơi",1],
+["上課","shàngkè","lên lớp",1],
+["下課","xiàkè","tan học",1],
+["吃飯","chīfàn","ăn cơm",1],
+["旁邊","pángbiān","bên cạnh",1],
+["卡拉OK","kǎlā OK","karaoke",1],
+["唱歌","chànggē","hát",1],
+["歌","gē","bài hát",1],
+["首","shǒu","lượng từ bài hát",1],
+["分鐘","fēnzhōng","phút",1],
+["鐘頭","zhōngtóu","tiếng đồng hồ",1],
+["小時","xiǎoshí","tiếng đồng hồ",1],
+["時間","shíjiān","thời gian",1],
+["點","diǎn","giờ",1],
+["見面","jiànmiàn","gặp mặt",1],
+["得","děi","phải",1],
+["銀行","yínháng","ngân hàng",1],
+["時候","shíhòu","khi / lúc",1],
+["後天","hòutiān","ngày kia",1],
+["等","děng","đợi",1],
+["門口","ménkǒu","cổng / cửa",1],
+["門","mén","cửa",1],
+["窗戶","chuānghu","cửa sổ",1],
+["些","xiē","vài / những",1],
+["錢包","qiánbāo","ví tiền",1],
+["下次","xiàcì","lần sau",1],
+["沒問題","méiwèntí","không vấn đề gì",1],
+["沒關係","méiguānxi","không có gì",1],
+["有空","yǒukòng","rảnh rỗi",1],
+["有時間","yǒushíjiàn","có thời gian",1],
+["忙","máng","bận",1],
+["有事","yǒushì","có việc",1],
+["沒空","méikòng","không rảnh",1],
+["再見","zàijiàn","tạm biệt",1],
+["剛","gāng","vừa / vừa mới",1],
+["最近","zuìjìn","gần đây / dạo này",1],
+["半","bàn","nửa / rưỡi",1],
+["比賽","bǐsài","trận đấu",1],
+["開始","kāishǐ","bắt đầu",1],
+["結束","jiéshù","kết thúc",1],
+["停","tíng","dừng",1],
+["每","měi","mỗi",1],
+["天","tiān","ngày",1],
+["書法","shūfǎ","thư pháp",1],
+["課","kè","lớp / khóa / môn / tiết",1],
+["寫","xiě","viết",1],
+["字","zì","chữ",1],
+["問","wèn","hỏi",1],
+["等一下","děngyíxià","đợi một chút",1],
+["有意思","yǒu yìsi","thú vị",1],
+["坐","zuò","ngồi / đi xe",1],
+["開","kāi","lái xe",1],
+["騎","qí","lái xe 2 bánh",1],
+["跟","gēn","cùng với",1],
+["火車","huǒchē","tàu hỏa",1],
+["玩","wán","chơi",1],
+["怎麼","zěnme","như thế nào / bằng gì",1],
+["慢","màn","chậm",1],
+["快","kuài","nhanh",1],
+["非常","fēicháng","cực kỳ / vô cùng",1],
+["比較","bǐjiào","hơn / khá",1],
+["車票","chēpiào","vé xe",1],
+["機車","jīchē","xe máy",1],
+["計程車","jìchéngchē","taxi",1],
+["公共機車","gōnggòng jīchē","xe máy công cộng",1],
+["捷運","jiéyùn","tàu điện / metro",1],
+["高鐵","gāotiě","đường sắt cao tốc",1],
+["舒服","shūfu","thoải mái",1],
+["又。。。又","yòu...yòu","vừa...vừa",1],
+["站","zhàn","trạm / ga / bến",1],
+["或是","huòshì","hoặc là",1],
+["網路上","wǎnglù shàng","trên mạng",1],
+["便利商店","biànlì shāngdiàn","cửa hàng tiện lợi",1],
+["參觀","cānguān","tham quan",1],
+["參加","cānjiā","tham gia",1],
+["古代","gǔdài","cổ đại",1],
+["載","zài","chở / đèo",1],
+["比","bǐ","hơn / so sánh",1],
+["故宮博物院","gùgōng bówùyuàn","viện bảo tàng Cố Cung",1],
+["不行","bùxíng","không được / không ổn",1],
+["不要","búyào","không muốn / đừng",1],
+["別","bié","đừng",1],
+["差不多","chàbúduō","gần như nhau",1],
+["星期","xīngqī","tuần / thứ",1],
+["回國","huíguó","về nước",1],
+["回家","huíjiā","về nhà",1],
+["打算","dǎsuàn","dự định / tính",1],
+["電視","diànshì","tivi",1],
+["影片","yǐngpiàn","phim",1],
+["部","bù","lượng từ bộ / phim",1],
+["旅行","lǚxíng","du lịch",1],
+["功課","gōngkè","bài tập",1],
+["出去","chūqù","ra ngoài",1],
+["大概","dàgài","khoảng / tầm",1],
+["放假","fàngjià","nghỉ",1],
+["下個星期","xià gè xīngqī","tuần sau",1],
+["上個星期","shàng gè xīngqī","tuần trước",1],
+["月","yuè","tháng",1],
+["號","hào","ngày",1],
+["有時候","yǒu shíhòu","có lúc",1],
+["多久","duōjiǔ","bao lâu",1],
+["女","nǚ","nữ / gái",1],
+["男","nán","nam / trai",1],
+["帶","dài","mang / đưa / dẫn theo",1],
+["還","hái","vẫn / còn",1],
+["建議","jiànyì","đề nghị / gợi ý",1],
+["應該","yīnggāi","nên",1],
+["夜市","yèshì","chợ đêm",1],
+["特別","tèbié","đặc biệt",1],
+["茶館","cháguǎn","quán trà",1],
+["酒館","jiǔguǎn","quán rượu",1],
+["麵店","miàndiàn","quán mì",1],
+["決定","juédìng","quyết định",1],
+["就","jiù","thì / liền / là",1],
+["要是","yàoshì","nếu",1],
+["如果","rúguǒ","nếu như",1],
+["逛","guàng","đi dạo",1],
+["散步","sànbù","tản bộ",1],
+["走路","zǒulù","đi bộ",1],
+["跑步","pǎobù","chạy bộ",1],
+["書桌","shūzhuō","bàn học",1],
+["先","xiān","trước",1],
+["聊天","liáotiān","trò chuyện",1],
+["找不到","zhǎobúdào","không tìm thấy",1],
+["告訴","gàosù","kể / bảo / nói",1],
+["走到","zǒudào","đi đến",1],
+["看到","kàndào","nhìn thấy",1],
+["後來","hòulái","sau đó",1],
+["以後","yǐhòu","sau này / sau khi",1],
+["以前","yǐqián","trước đây / trước khi",1],
+["發現","fāxiàn","phát hiện",1],
+["對面","duìmiàn","đối diện",1],
+["上面","shàngmiàn","bên trên",1],
+["下面","xiàmiàn","bên dưới",1],
+["完","wán","xong",1],
+["再","zài","lại",1],
+["馬上","mǎshàng","ngay lập tức",1],
+["於是","yúshì","thế nên / do vậy",1],
+["第一次","dìyīcì","lần đầu tiên",1],
+["星期天","xīngqī tiān","chủ nhật",1],
+["公園","gōngyuán","công viên",1],
+["天氣","tiānqì","thời tiết",1],
+["練習","liànxí","bài tập / luyện tập",1],
+["還","huán","hoàn trả",1],
+["借","jiè","mượn",1],
+["起床","qǐchuáng","tỉnh dậy",1],
+["床","chuáng","giường",1],
+["桌子","zhuōzi","cái bàn",1],
+["椅子","yǐzi","cái ghế",1],
+["花","huā","tốn / tiêu",1],
+["終於","zhōngyú","cuối cùng",1],
+["本來","běnlái","ban đầu / lúc đầu",1],
+["還沒有","hái méiyǒu","vẫn chưa",1],
+["及時","jíshí","đúng lúc",1],
+["報告","bàogào","báo cáo",1],
+["做","zuò","làm / giải quyết",1],
+["工作","gōngzuò","công việc",1],
+["休息","xiūxi","nghỉ ngơi",1],
+["約","yuē","hẹn",1],
+["慶祝","qìngzhù","chúc mừng",1],
+["離開","líkāi","rời khỏi",1],
+["開心","kāixīn","vui vẻ",1],
+["高興","gāoxìng","vui vẻ",1],
+["問題","wèntí","câu hỏi / vấn đề",1],
+["辦公室","bàngōngshì","văn phòng",1],
+["因為","yīnwèi","bởi vì",1],
+["計畫","jìhuà","kế hoạch",1],
+["準備","zhǔnbèi","chuẩn bị",1],
+["水果","shuǐguǒ","hoa quả",1],
+["水","shuǐ","nước",1],
+["餓","è","đói",1],
+["渴","kě","khát",1],
+["巧克力","qiǎokèlì","socola",1],
+["冰淇淋","bīngqílín","kem",1],
+["房間","fángjiān","căn phòng",1],
+["沙發","shāfā","sofa",1],
+["廚房","chúfáng","phòng bếp",1],
+["家具","jiājù","đồ gia dụng",1],
+["太陽","tàiyáng","mặt trời",1],
+["身體","shēntǐ","cơ thể / sức khỏe",1],
+["說話","shuōhuà","nói chuyện",1],
+["有趣","yǒuqù","thú vị",1],
+["電腦","diànnǎo","máy tính",1],
+["學習","xuéxí","học hành",1],
+["跳舞","tiàowǔ","nhảy múa",1],
+["畫畫","huàhuà","vẽ tranh",1],
+["畫","huà","vẽ",1],
+["平常","píngcháng","bình thường",1],
+["通常","tōngcháng","thông thường",1],
+["平時","píngshí","thường ngày",1],
+["西瓜","xīguā","dưa hấu",1],
+["蘋果","píngguǒ","táo",1],
+["芒果","mángguǒ","xoài",1],
+["葡萄","pútáo","nho",1],
+["草莓","cǎoméi","dâu tây",1],
+["橘子","júzi","quýt",1],
+["香蕉","xiāngjiāo","chuối",1],
+["木瓜","mùguā","đu đủ",1],
+["腳踏車","jiǎotàchē","xe đạp",1],
+["自行車","zìxíngchē","xe đạp",1],
+["串","chuàn","chùm / chuỗi",1],
+["外皮","wàipí","vỏ ngoài",1],
+["樹葉","shùyè","lá cây",1],
+["香","xiāng","thơm",1],
+["部分","bùfen","bộ phận",1],
+["塊","kuài","miếng",1],
+["酒店","jiǔdiàn","khách sạn",1],
+["旅館","lǚguǎn","nhà nghỉ / khách sạn",1],
+["穿","chuān","mặc",1],
+["衣服","yīfu","quần áo",1],
+["褲子","kùzi","quần",1],
+["裙子","qúnzi","váy",1],
+["鞋子","xiézi","giày",1],
+["機會","jīhuì","cơ hội",1],
+["拍","pāi","chụp",1],
+["笑","xiào","cười",1],
+["哭","kū","khóc",1],
+["高","gāo","cao",1],
+["矮","ǎi","thấp",1],
+["乾淨","gānjìng","sạch sẽ",1],
+["成熟","chéngshú","chín / hoàn thiện",1],
+["新鮮","xīnxiān","tươi mới",1],
+["天空","tiānkōng","bầu trời",1],
+["箱","xiāng","thùng / hòm / hộp",1],
+["冰箱","bīngxiāng","tủ lạnh",1],
+["彎彎","wānwān","cong",1],
+["一粒","yī lì","một hạt / viên",1],
+["紅色","hóngsè","màu đỏ",1],
+["綠色","lǜsè","màu xanh lá",1],
+["藍色","lánsè","màu xanh biển",1],
+["黃色","huángsè","màu vàng",1],
+["紫色","zǐsè","màu tím",1],
+["白色","báisè","màu trắng",1],
+["黑色","hēisè","màu đen",1],
+["像","xiàng","giống",1],
+["過","guò","từng / đã",1],
+["用","yòng","dùng",1],
+["幸運","xìngyùn","may mắn",1],
+["顏色","yánsè","màu sắc",1],
+["組","zǔ","nhóm",1],
+["房東","fángdōng","chủ nhà / chủ trọ",1],
+["左邊","zuǒbiān","bên trái",1],
+["右邊","yòubiān","bên phải",1],
+["浴室","yùshì","phòng tắm",1],
+["超市","chāoshì","siêu thị",1],
+["間","jiān","gian / phòng",1],
+["空","kōng","trống",1],
+["套房","tàofáng","phòng khép kín",1],
+["回去","huíqù","quay về",1],
+["喂","wéi","alo",1],
+["房租","fángzū","tiền thuê nhà",1],
+["已經","yǐjīng","đã",1],
+["習慣","xíguàn","quen",1],
+["熱水器","rèshuǐqì","bình nóng lạnh",1],
+["好像","hǎoxiàng","hình như / có vẻ",1],
+["裝","zhuāng","lắp đặt",1],
+["付","fù","chi trả",1],
+["受到","shòudào","nhận được",1],
+["不好意思","bù hǎoyìsi","thật ngại / xin lỗi",1],
+["有線電視","yǒuxiàn diànshì","truyền hình cáp",1],
+["醫院","yīyuàn","bệnh viện",1],
+["醫生","yīshēng","bác sĩ",1],
+["病","bìng","ốm / bệnh",1],
+["結婚","jiéhūn","kết hôn",1],
+["搬家","bānjiā","chuyển nhà",1],
+["租不起","zū bù qǐ","không đủ tiền thuê",1],
+["租金","zūjīn","tiền thuê",1],
+["押金","yājīn","tiền đặt cọc",1],
+["臥室","wòshì","phòng ngủ",1],
+["衛生間","wèishēngjiān","phòng vệ sinh",1],
+["洗手間","xǐshǒujiān","phòng vệ sinh",1],
+["再一遍","zài yí biàn","một lần nữa",1],
+["再來","zài lái","lại lần nữa",1],
+["打哈欠","dǎ hāqiàn","ngáp",1],
+["發","fā","đưa / gửi",1],
+["右手","yòushǒu","tay phải",1],
+["左手","zuǒshǒu","tay trái",1],
+["腳","jiǎo","chân",1],
+["頭","tóu","đầu",1],
+["肚子","dùzi","bụng",1],
+["眼睛","yǎnjīng","mắt",1],
+["眼鏡","yǎnjìng","kính mắt",1],
+["疼","téng","đau",1],
+["年","nián","năm",1],
+["念","niàn","học",1],
+["大學","dàxué","đại học",1],
+["需要","xūyào","cần / cần phải",1],
+["獎學金","jiǎngxuéjīn","học bổng",1],
+["成績","chéngjī","thành tích",1],
+["學費","xuéfèi","học phí",1],
+["公司","gōngsī","công ty",1],
+["替","tì","thay cho",1],
+["希望","xīwàng","hi vọng",1],
+["上班","shàngbān","đi làm",1],
+["唸書","niànshū","học",1],
+["累","lèi","mệt",1],
+["語言中心","yǔyán zhōngxīn","trung tâm ngôn ngữ",1],
+["加油","jiāyóu","cố lên",1],
+["去年","qùnián","năm ngoái",1],
+["生意","shēngyì","làm ăn / kinh doanh",1],
+["這樣","zhèyàng","như thế này / như vậy",1],
+["國家","guójiā","quốc gia",1],
+["試","shì","thử",1],
+["難","nán","khó",1],
+["容易","róngyì","dễ",1],
+["試試看","shìshìkàn","thử xem",1],
+["快樂","kuàilè","vui vẻ",1],
+["回來","huílái","quay trở về",1],
+["怎麼","zěnme","tại sao / thế nào",1],
+["忘了","wàngle","quên",1],
+["記得","jìde","nhớ",1],
+["當然","dāngrán","đương nhiên",1],
+["語言","yǔyán","ngôn ngữ",1],
+["交換","jiāohuàn","trao đổi",1],
+["熱心","rèxīn","nhiệt tình",1],
+["西班牙文","Xībānyá wén","tiếng Tây Ban Nha",1],
+["一樣","yíyàng","giống nhau",1],
+["左右","zuǒyòu","khoảng",1],
+["生日快樂","shēngrì kuàilè","chúc mừng sinh nhật",1],
+["我就是","wǒ jiù shì","là tôi đây",1],
+["好久不見","hǎojiǔ bújiàn","lâu rồi không gặp",1],
+["不必客氣","búbì kèqì","không cần khách sáo",1],
+["太客氣","tài kèqì","khách sáo quá",1],
+["今年","jīnnián","năm nay",1],
+["訂","dìng","đặt trước",1],
+["豬腳","zhūjiǎo","chân lợn",1],
+["麵線","miànxiàn","mì sợi nhỏ",1],
+["蛋","dàn","trứng",1],
+["一點","yìdiǎn","một chút",1],
+["傳統","chuántǒng","truyền thống",1],
+["年輕","niánqīng","trẻ tuổi",1],
+["對","duì","đối / đối xử",1],
+["祝","zhù","chúc",1],
+["哪裡，哪裡","nǎlǐ,nǎlǐ","đâu có",1],
+["大部分","dà bùfèn","đa số / phần lớn",1],
+["萬事如意","wànshì rúyì","vạn sự như ý",1],
+["心想事成","xīnxiǎng shìchéng","cầu được ước thấy",1],
+["生活","shēnghuó","cuộc sống / sinh sống",1],
+["風","fēng","gió",1],
+["滑雪","huáxuě","trượt tuyết",1],
+["新年","xīnnián","năm mới",1],
+["快","kuài","sắp",1],
+["父母","fùmǔ","bố mẹ",1],
+["紅葉","hóngyè","lá đỏ",1],
+["只","zhǐ","chỉ",1],
+["玉山","Yùshān","Ngọc Sơn",1],
+["紐約","Niǔyuē","New York",1],
+["底","dǐ","cuối",1],
+["傘","sǎn","ô",1],
+["颱風","táifēng","bão",1],
+["濕","shī","ẩm",1],
+["討厭","tǎoyàn","ghét / đáng ghét",1],
+["新聞","xīnwén","tin tức",1],
+["更","gèng","càng",1],
+["大家","dàjiā","mọi người",1],
+["小心","xiǎoxīn","cẩn thận",1],
+["可愛","kěài","đáng yêu",1],
+["慢走","mànzǒu","đi thong thả",1],
+["護士","hùshi","y tá",1],
+["一直","yìzhí","liên tục",1],
+["流","liú","chảy",1],
+["鼻水","bíshuǐ","nước mũi",1],
+["頭髮","tóufa","tóc",1],
+["痛","tòng","đau",1],
+["胃口","wèikǒu","khẩu vị",1],
+["差","chā","kém / tệ",1],
+["喉嚨","hóulóng","cổ họng",1],
+["發炎","fāyán","viêm",1],
+["生病","shēngbìng","sinh bệnh",1],
+["發燒","fāshāo","sốt",1],
+["感冒","gǎnmào","cảm cúm",1],
+["藥","yào","thuốc",1],
+["藥局","yàojú","tiệm thuốc",1],
+["拿","ná","cầm / mang theo",1],
+["把","bǎ","làm cho vật thay đổi trạng thái",1],
+["睡覺","shuìjiào","đi ngủ",1],
+["早一點","zǎo yìdiǎn","sớm một chút",1],
+["臉色","liǎnsè","sắc mặt",1],
+["難看","nánkàn","khó coi",1],
+["吐","tù","nôn",1],
+["次","cì","lần",1],
+["陪","péi","cùng / đi cùng",1],
+["看病","kànbìng","khám bệnh",1],
+["健康","jiànkāng","sức khỏe",1],
+["保險","bǎoxiǎn","bảo hiểm",1],
+["關心","guānxīn","quan tâm",1],
+["包","bāo","gói",1],
+["睡","shuì","ngủ",1],
+["怎麼了","zěnme le","thế nào rồi",1],
+["不用了","búyòng le","không cần đâu",1],
+["健康中心","jiànkāng zhōngxīn","trung tâm sức khỏe",1],
+["最好","zuìhǎo","tốt nhất",1],
+["機器","jīqì","máy móc",1],
+["安裝","ānzhuāng","lắp đặt",1],
+["支付","zhīfù","chi trả",1],
+["遊戲","yóuxì","trò chơi",1],
+["樓梯","lóutī","cầu thang",1],
+["受傷","shòushāng","bị thương",1],
+["躺","tǎng","nằm",1],
+["洗衣機","xǐyījī","máy giặt",1],
+["光","guāng","ánh sáng / sạch hết",1],
+["吃不下","chībúxià","nuốt không trôi",1],
+["其他","qítā","khác",1],
+["機場","jīchǎng","sân bay",1],
+["搬","bān","chuyển",1],
+["傷心","shāngxīn","thương tâm",1],
+["緊張","jǐnzhāng","hồi hộp",1],
+["讓","ràng","nhường / mời / bảo / để",1],
+["檢查","jiǎnchá","kiểm tra",1],
+["出發","chūfā","xuất phát",1],
+["公寓","gōngyù","căn hộ",1],
+["弄丟","nòngdiū","làm mất / mất tiêu",1],
+["行李","xínglǐ","hành lý",1],
+["認識","rènshi","quen biết",1],
+["掛號","guàhào","đăng ký",1],
+["排隊","páiduì","xếp hàng",1],
+["而且","érqiě","vả lại / mà còn",1],
+["雖然","suīrán","mặc dù",1],
+["經驗","jīngyàn","kinh nghiệm",1],
+["總是","zǒngshì","luôn luôn",1],
+["生氣","shēngqì","nổi giận",1],
+["難過","nánguò","buồn / khó chịu",1],
+["回答","huídá","trả lời",1],
+["選擇","xuǎnzé","lựa chọn",1],
+["照顧","zhàogù","chăm sóc",1],
+["西藥","xīyào","thuốc Tây",1]
+
+];
+
+/* =========================================================
+   ÂM THANH
+   ========================================================= */
+
+let soundOn = true;
+let audioCtx = null;
+
+function audioStart(){
+  if(!audioCtx){
+    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  }
+  if(audioCtx.state === "suspended") audioCtx.resume();
+}
+
+function tone(freq,duration,type="sine",volume=.08,delay=0){
+  if(!soundOn) return;
+  audioStart();
+
+  const osc=audioCtx.createOscillator();
+  const gain=audioCtx.createGain();
+
+  osc.type=type;
+  osc.frequency.value=freq;
+
+  gain.gain.setValueAtTime(0.0001,audioCtx.currentTime+delay);
+  gain.gain.exponentialRampToValueAtTime(
+    volume,
+    audioCtx.currentTime+delay+.02
+  );
+  gain.gain.exponentialRampToValueAtTime(
+    0.0001,
+    audioCtx.currentTime+delay+duration
+  );
+
+  osc.connect(gain);
+  gain.connect(audioCtx.destination);
+
+  osc.start(audioCtx.currentTime+delay);
+  osc.stop(audioCtx.currentTime+delay+duration+.03);
+}
+
+function happySound(){
+  tone(523.25,.12,"sine",.08,0);
+  tone(659.25,.12,"sine",.08,.09);
+  tone(783.99,.2,"sine",.1,.18);
+}
+
+function wrongSound(){
+  tone(220,.18,"triangle",.06,0);
+  tone(185,.25,"triangle",.05,.15);
+}
+
+function finishSound(){
+  tone(523,.12,"sine",.08,0);
+  tone(659,.12,"sine",.08,.12);
+  tone(784,.12,"sine",.08,.24);
+  tone(1047,.3,"sine",.1,.36);
+}
+
+function toggleSound(){
+  soundOn=!soundOn;
+  document.getElementById("soundBtn").textContent =
+    soundOn ? "🔊 Âm thanh" : "🔇 Tắt âm";
+}
+
+/* =========================================================
+   GAME
+   ========================================================= */
+
+let pool=[];
+let current=0;
+let score=0;
+let answered=false;
+
+function shuffle(arr){
+  return [...arr].sort(()=>Math.random()-.5);
+}
+
+function startGame(){
+
+  audioStart();
+
+  const lesson=document.getElementById("lesson").value;
+
+  pool = lesson==="all"
+    ? shuffle(VOCAB)
+    : shuffle(VOCAB.filter(x=>String(x[3])===lesson));
+
+  /*
+    Mỗi lần chơi lấy tối đa 20 câu.
+    Có thể đổi thành pool.length nếu muốn chơi toàn bộ.
+  */
+  pool=pool.slice(0,20);
+
+  current=0;
+  score=0;
+  answered=false;
+
+  document.getElementById("startBtn").classList.add("hidden");
+  document.getElementById("lesson").classList.add("hidden");
+  document.getElementById("result").classList.add("hidden");
+  document.getElementById("game").classList.remove("hidden");
+
+  showQuestion();
+}
+
+function showQuestion(){
+
+  if(current>=pool.length){
+    finishGame();
+    return;
+  }
+
+  answered=false;
+
+  const item=pool[current];
+
+  document.getElementById("questionNumber").textContent =
+    `Câu ${current+1} / ${pool.length}`;
+
+  document.getElementById("chinese").textContent=item[0];
+  document.getElementById("pinyin").textContent=item[1];
+  document.getElementById("meaning").textContent="";
+
+  document.getElementById("feedback").textContent="";
+
+  document.getElementById("score").textContent=
+    `⭐ Điểm: ${score}`;
+
+  document.getElementById("progressBar").style.width=
+    `${(current/pool.length)*100}%`;
+
+  createAnswers(item);
+}
+
+function createAnswers(correct){
+
+  const answers=document.getElementById("answers");
+  answers.innerHTML="";
+
+  let choices=[correct];
+
+  const others=shuffle(
+    VOCAB.filter(x=>x[0]!==correct[0])
+  ).slice(0,3);
+
+  choices=shuffle([...choices,...others]);
+
+  choices.forEach(item=>{
+
+    const btn=document.createElement("button");
+
+    btn.className="answer";
+    btn.textContent=item[2];
+
+    btn.onclick=()=>checkAnswer(btn,item,correct);
+
+    answers.appendChild(btn);
+  });
+}
+
+function checkAnswer(btn,item,correct){
+
+  if(answered) return;
+
+  if(item[0]===correct[0]){
+
+    answered=true;
+
+    btn.classList.add("correct");
+
+    score++;
+
+    document.getElementById("feedback").textContent=
+      "🎉 Chính xác! Tuyệt vời!";
+
+    document.getElementById("meaning").textContent=
+      correct[2];
+
+    document.getElementById("score").textContent=
+      `⭐ Điểm: ${score}`;
+
+    happySound();
+
+    setTimeout(()=>{
+      current++;
+      showQuestion();
+    },650);
+
+  }else{
+
+    btn.classList.add("wrong");
+
+    document.getElementById("feedback").textContent=
+      "😅 Chưa đúng! Thử lại nhé!";
+
+    wrongSound();
+
+    /*
+      Không chuyển câu.
+      Người chơi phải chọn lại.
+    */
+    setTimeout(()=>{
+      btn.classList.remove("wrong");
+      document.getElementById("feedback").textContent="";
+    },700);
+  }
+}
+
+function finishGame(){
+
+  document.getElementById("game").classList.add("hidden");
+  document.getElementById("result").classList.remove("hidden");
+
+  document.getElementById("progressBar").style.width="100%";
+
+  const percent=Math.round(score/pool.length*100);
+
+  document.getElementById("finalScore").textContent=
+    `${score} / ${pool.length} điểm — ${percent}%`;
+
+  let message="";
+
+  if(percent===100){
+    message="🏆 ĐỈNH QUÁ! Mày làm đúng hết luôn!";
+  }else if(percent>=80){
+    message="🎉 Quá giỏi! Tiếp tục phát huy nhé!";
+  }else if(percent>=60){
+    message="😎 Khá tốt! Ôn thêm một chút là lên điểm cao!";
+  }else{
+    message="💪 Không sao! Chơi lại vài lần sẽ nhớ từ hơn!";
+  }
+
+  document.getElementById("finalMessage").textContent=message;
+
+  finishSound();
+}
+
+/* =========================================================
+   KHỞI TẠO
+   ========================================================= */
+
+document.getElementById("lesson").addEventListener("change",()=>{
+  document.getElementById("startBtn").classList.remove("hidden");
+});
+
+</script>
+
+</body>
+</html>
